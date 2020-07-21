@@ -10,7 +10,7 @@ def summarizer():
 		raw_text = request.form['raw_text']	
 		spacy_summary = spacy_summarizer(raw_text)
 		nltk_summary = nltk_summarizer(raw_text)
-		return render_template('index.html', spacy_summary=spacy_summary, nltk_summary=nltk_summary, request=1)
+		return render_template('index.html', raw_text=raw_text,  spacy_summary=spacy_summary, nltk_summary=nltk_summary, request=1)
 	return render_template('index.html', request=0)
 
 if __name__ == '__main__':
