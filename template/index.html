@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <title>Text Summarizer</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <style>
+  	input[type='file']{
+  		display: none;
+  	}
+  	#loadFile{
+    	border: 1px solid #ccc;
+    	border-radius: 5px; 
+    	padding: 6px 12px;
+    	cursor: pointer;
+    	background-color: #529cfb;
+    	color: #fff;
+    }
+    #loadFile:hover{
+    	background-color: #006efe;
+    }
+    .text{
+      padding: 10px;
+    }
+    #output{
+    	padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class='jumbotron text-center'>
+    <h1>Text Summarizer</h1>
+    <p>Extractive summarizer using spacy and nltk python models.</p>
+    <form  method='post' class="form-group">    	
+      <div class="text">
+         <textarea id="output" placeholder="Enter Text" name='raw_text' cols="40" rows="2" required="true"></textarea>
+      </div>
+      <div class="inpute-group-btn">
+        <button type="reset" class="btn btn-danger" onclick="document.getElementById('output').textContent=null">Clear</button>
+        <button type='submit' class="btn btn-success">Summary</button>
+        <input type="button" id="loadFile" value="Add Document" onclick="document.getElementById('doc-selector').click();" />
+		<input type="file" id="doc-selector"/>
+      </div>
+    </form>
+   </div>
+
+   <script type="text/javascript">
+  	var input = document.getElementById("doc-selector");
+  	
+    input.addEventListener("change", function (){
+    	if (this.files && this.files[0]){
+    		var reader = new FileReader();
+    		reader.onload = function(){
+      			document.getElementById("output").textContent = reader.result;
+    		}
+    		reader.readAsBinaryString(this.files[0]);
+  		}
+	});
+  </script>
+  
+   <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-sm-6">
+          {% if request %}
+            <h2>Spacy Summarizer</h2>
+          {% endif %}
+          <p>{{ spacy_summary }}</p>
+        </div>
+        <div class="col-sm-6">
+          {% if request %}
+            <h2>NLTK Summarizer</h2>
+          {% endif %}
+          <p>{{ nltk_summary }}<p>
+        </div>
+      </div>
+      
+  </div>
+</body>
+</html>

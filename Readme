@@ -1,0 +1,20 @@
+Extractive Text Summarizer
+
+Text cleaning
+Word Tokenization
+Word frequency table
+Sentence Tokenization
+Sentence frequency table
+Summarization
+
+Spacy Summarizer 
+	Requirements
+	-spacy
+	-spacy en_core_web_sm
+
+NLTK Summerizer
+	Requirements
+	-nltk 
+
+How to run
+	python app.py
